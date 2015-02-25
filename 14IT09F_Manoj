@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import socket
 import subprocess
 import sys
@@ -11,12 +10,10 @@ subprocess.call('clear', shell=True)
 remoteServer    = raw_input("Enter a remote host to scan: ")
 remoteServerIP  = socket.gethostbyname(remoteServer)
 
-# Print a nice banner with information on which host we are about to scan
 print "-" * 60
 print "Please wait, scanning remote host", remoteServerIP
 print "-" * 60
 
-# Check what time the scan started
 t1 = datetime.now()
 
 # Using the range function to specify ports (here it will scans all ports between 1 and 1024)
@@ -43,10 +40,8 @@ except socket.error:
     print "Couldn't connect to server"
     sys.exit()
 
-# Checking the time again
 t2 = datetime.now()
 
-# Calculates the difference of time, to see how long it took to run the script
 total =  t2 - t1
 
 # Printing the information to screen
