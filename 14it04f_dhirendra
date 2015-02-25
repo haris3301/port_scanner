@@ -7,6 +7,7 @@ static char sccsid[] = "@(#)pscan.c     1.0     (KRAD) 08/25/94";
 
 #define MAX_PORT 1024 /* scan up to this port */
 int s;
+//lki
 struct sockaddr_in addr;
 char rmt_host[100];
 
