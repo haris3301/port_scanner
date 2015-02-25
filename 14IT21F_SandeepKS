@@ -1,0 +1,60 @@
+
+#include<sys/socket.h>
+//#include<sys/types.h>
+#include<netinet/in.h>
+#include<stdio.h>
+
+
+int main()
+{
+
+	int sock_fd, con_status,i; 
+
+	char ipaddress[20] = "74.125.236.115"; //nitk.ac.in
+
+	struct sockaddr_in server1;
+
+	server1.sin_family=AF_INET;
+	server1.sin_addr.s_addr=inet_addr(ipaddress);
+
+
+	for(i=80;i<=80;i++)
+	{
+		sock_fd=socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+
+		if(sock_fd < 0)
+		{
+			printf("\nError opening socket, exiting");
+			return 0;
+		}
+	
+		server1.sin_port=htons(i);
+	
+
+		con_status=connect(sock_fd, (struct sockaddr *)&server1, sizeof(server1));
+
+		if(con_status < 0)
+		{
+			//printf("closed");
+			//return 0;
+			con_status=close(sock_fd);
+		}
+
+		else
+		{
+			printf("\nPort %d : ", i);
+			printf("open");
+			con_status=close(sock_fd);
+		}
+	
+
+	}
+
+	//int con_status=connect(sd,
+
+	//printf("\n%d\n",sock_fd);
+
+	printf("\n\n");
+
+	return 0;
+}
