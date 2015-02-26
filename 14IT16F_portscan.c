@@ -1,3 +1,6 @@
+/*
+    Port scanner code in c
+*/
 #include<stdio.h>
 #include<sys/socket.h>
 #include<errno.h>
@@ -15,11 +18,14 @@ int main(int argc , char **argv)
     //Get the hostname to scan
     printf("Enter hostname or IP : ");
     gets(hostname);
-
-    start=1;
-    end=65535;
      
-    
+    //Get start port number
+    printf("\nEnter start port number : ");
+    scanf("%d" , &start);
+     
+    //Get end port number
+    printf("Enter end port number : ");
+    scanf("%d" , &end);
  
     //Initialise the sockaddr_in structure
     strncpy((char*)&sa , "" , sizeof sa);
@@ -46,8 +52,8 @@ int main(int argc , char **argv)
     }
      
     //Start the port scan loop
-    printf("Scanning..... : \n");
-    for( i = start ; i <= end ; i++)
+    printf("Starting the portscan loop : \n");
+    for( i = start ; i <= end ; i++) 
     {
         //Fill in the port number
         sa.sin_port = htons(i);
@@ -55,7 +61,7 @@ int main(int argc , char **argv)
         sock = socket(AF_INET , SOCK_STREAM , 0);
          
         //Check whether socket created fine or not
-        if(sock < 0)
+        if(sock < 0) 
         {
             perror("\nSocket");
             exit(1);
